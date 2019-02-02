@@ -69,7 +69,7 @@ unsigned char d_ret_code_cz[0x20];
 unsigned char d_ret_code_tp[0x20];
 unsigned char d_ret_code_pf[0x20];
 unsigned char d_ret_code_vc[0x20];
-unsigned char d_ret_code_dc[0x20];
+//unsigned char d_ret_code_dc[0x20];
 
 int (*CNWSPlayer__ValidateCharacter)(CNWSPlayer *pPlayer, int *result);
 
@@ -666,6 +666,7 @@ int CNWSObject__dtor(uintptr_t p)
     return 0;
 }
 
+/*
 int CNWSCreatureStats__GetEpicWeaponDevastatingCritical_hook(CNWSCreatureStats *pStats, CNWSItem *pItem)
 {
     int (*original)(CNWSCreatureStats*, CNWSItem*);
@@ -692,6 +693,7 @@ int CNWSCreatureStats__GetEpicWeaponDevastatingCritical_hook(CNWSCreatureStats *
     // Either no devcrit applicable, or event bypassed
     return 0;
 }
+*/
 
 
 int PluginsLoaded(uintptr_t p)
@@ -749,7 +751,7 @@ int HookFunctions(bool enableUnsafe)
     hook_function(org_TogglePause, (unsigned long)TogglePauseHookProc, d_ret_code_tp, 9);
     hook_function(org_PossessFamiliar, (unsigned long)PossessFamiliarHookProc, d_ret_code_pf, 9);
     hook_function(org_ValidateCharacter, (unsigned long)CNWSPlayer__ValidateCharacter_hook, d_ret_code_vc, 12);
-    hook_function(org_GetEpicWeaponDevastatingCritical, (unsigned long)CNWSCreatureStats__GetEpicWeaponDevastatingCritical_hook, d_ret_code_dc, 9);
+    //hook_function(org_GetEpicWeaponDevastatingCritical, (unsigned long)CNWSCreatureStats__GetEpicWeaponDevastatingCritical_hook, d_ret_code_dc, 9);
     *(dword*)&CNWSPlayer__ValidateCharacter = (dword)&d_ret_code_vc;
 
     if (enableUnsafe) {
@@ -774,7 +776,7 @@ int HookFunctions(bool enableUnsafe)
     PrintHookInfo(org_TogglePause, "TogglePause");
     PrintHookInfo(org_PossessFamiliar, "PossessFamiliar");
     PrintHookInfo(org_ValidateCharacter, "ValidateCharacter");
-    PrintHookInfo(org_GetEpicWeaponDevastatingCritical, "GetEpicWeaponDevastatingCritical");
+    //PrintHookInfo(org_GetEpicWeaponDevastatingCritical, "GetEpicWeaponDevastatingCritical");
 
     return (org_SaveChar && org_PickPocket && org_Attack && org_UseItem &&
             org_ConvSelect && org_ConditionalScript &&
@@ -782,8 +784,8 @@ int HookFunctions(bool enableUnsafe)
             org_ExamineDoor && org_UseSkill && org_UseFeat &&
             org_ToggleMode && org_CastSpell &&
             org_TogglePause && org_PossessFamiliar &&
-            org_SendServerToPlayerQuickChatMessage &&
-            org_GetEpicWeaponDevastatingCritical);
+            org_SendServerToPlayerQuickChatMessage);// &&
+            //org_GetEpicWeaponDevastatingCritical);
 }
 
 
