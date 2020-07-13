@@ -35,7 +35,7 @@ int nx_hook_enable_exec(const void *addr, size_t len);
 int nx_hook_enable_write(const void *addr, size_t len);
 
 void *nx_hook_function(void *addr, void *func, size_t len, uint32_t flags);
-void *nx_hook_function_with_code(void *addr, void *func, size_t len, uint32_t flags, char *code);
+void *nx_hook_function_with_code(void *addr, void *func, size_t len, uint32_t flags, void *code);
 void nx_hook_function_call(void *addr, void *func);
 
 void nwn_hook_init(void);
@@ -59,7 +59,7 @@ void nwn_hook_init(void);
     *(void**)&orig = nx_hook_function((void*)addr, (void*)hook, bytes, NX_HOOK_DIRECT | NX_HOOK_RETCODE)
 
 #define NX_HOOK_WITH_CODE(orig, addr, hook, bytes, code) \
-    *(void**)&orig = nx_hook_function_with_code((void*)addr, (void*)hook, bytes, NX_HOOK_DIRECT | NX_HOOK_RETCODE, code)
+    *(void**)&orig = nx_hook_function_with_code((void*)addr, (void*)hook, bytes, NX_HOOK_DIRECT | NX_HOOK_RETCODE, (void*)code)
 
 /**
  * Macro: NX_HOOK_CALL

@@ -107,7 +107,7 @@ void *nx_hook_function(void *addr, void *func, size_t len, uint32_t flags)
     return trampoline;
 }
 
-void *nx_hook_function_with_code(void *addr, void *func, size_t len, uint32_t flags, char *code)
+void *nx_hook_function_with_code(void *addr, void *func, size_t len, uint32_t flags, void *code)
 {
     unsigned char *trampoline = NULL;
 
