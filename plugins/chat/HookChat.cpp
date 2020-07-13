@@ -113,10 +113,11 @@ int SendMsgSingle(int mode, int conn, int speaker, char *msg)
 
 int HookFunctions()
 {
-    NX_HOOK(CNWSMessage__SendServerToPlayerChatMessage,
+    NX_HOOK_WITH_CODE(CNWSMessage__SendServerToPlayerChatMessage,
             0x0806839C,
             SendServerToPlayerChatMessage_hook,
-            5);
+            5,
+			nx_hook_displaced_chat_code);
 
     NX_HOOK(CNWSMessage__SendServerToPlayerCCMessage,
             0x08078AB8,

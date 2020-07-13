@@ -25,6 +25,9 @@ typedef unsigned long dword;
 typedef unsigned short int word;
 typedef unsigned char byte;
 
+static const unsigned char *nx_hook_displaced_chat_code =
+    (unsigned char *)"\x55\x89\xe5\x57\x56\x90\x90\x90\x90\x90\x90\x90";
+
 int HookFunctions();
 
 void RunScript(char * sname, int ObjID);
