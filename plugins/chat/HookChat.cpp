@@ -119,10 +119,11 @@ int HookFunctions()
             5,
 			nx_hook_displaced_chat_code);
 
-    NX_HOOK(CNWSMessage__SendServerToPlayerCCMessage,
+    NX_HOOK_WITH_CODE(CNWSMessage__SendServerToPlayerCCMessage,
             0x08078AB8,
             SendServerToPlayerCCMessage_hook,
-            5);
+            5,
+			nx_hook_displaced_cc_code);
     return 1;
 }
 
